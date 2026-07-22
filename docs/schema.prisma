@@ -1,0 +1,30 @@
+// datasourse db {
+//     provider = "postgresql"
+//     url = env("DATABASE_URL")
+// }
+
+// DATABASE CONNECTION -> sent to prisma.config.ts by Prisma 6 
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+enum Language {
+    javascript
+    python
+    c
+    java
+    html_css
+}
+
+model Session {
+    sessionId          String       @id  @default(uuid())
+    clientId           String
+    sessionName        String       @default("Untitled Session")
+    language           Language
+    codeInput          String
+    aiSummary          String?
+    aiIssues           String?
+    aiSuggestions      String?
+    createdAt          DateTime     @default(now())
+}
