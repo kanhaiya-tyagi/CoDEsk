@@ -107,7 +107,7 @@ See [`docs/Architecture.png`](docs/Architecture.png) for the high-level system d
 
 ## Status
 
-V1 complete. Deployed at: `[live link]`
+V1 complete. Deployed at: [https://codesk-delta.vercel.app/](https://codesk-delta.vercel.app/)
 
 ---
 
