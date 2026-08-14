@@ -7,8 +7,8 @@ export const reviewCode = async (codeInput, language) => {
 Respond with ONLY valid JSON, no markdown fences, no extra commentary, in exactly this shape:
 {
 "summary": "2-3 sentence overview of what the code does and its overall quality",
-"issues": "bullet-style list of bugs, security issues, or bad practices found (use \\n between points)",
-"suggestions": "bullet-style list of concrete improvements (use \\n between points)"
+"issues": "list of bugs, security issues, or bad practices found, one per line separated by \\n. Do not prefix lines with -, *, or any bullet symbol — plain text only",
+"suggestions": "list of concrete improvements, one per line separated by \\n. Do not prefix lines with -, *, or any bullet symbol — plain text only"
 }
 Language: ${language}
 Code:
@@ -22,6 +22,11 @@ ${codeInput}`
 
     let parsed
 
+    const toSafeString = (val, maxLen = 3000) => {
+        if (typeof val !== 'string') return ''
+        return val.slice(0, maxLen)
+    }
+
     try{
         const cleaned = rawText.replace(/```json|```/g, '').trim()
         parsed = JSON.parse(cleaned)
@@ -30,8 +35,8 @@ ${codeInput}`
     }
 
     return {
-        aiSummary: parsed.summary ?? '',
-        aiIssues: parsed.issues ?? '',
-        aiSuggestions: parsed.suggestions ?? ''
+        aiSummary: toSafeString(parsed.summary),
+        aiIssues: toSafeString(parsed.issues),
+        aiSuggestions: toSafeString(parsed.suggestions)
     }
 }

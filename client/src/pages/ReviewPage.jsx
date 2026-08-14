@@ -38,6 +38,7 @@ const ReviewPage = () => {
 							<SelectItem value="javascript">JavaScript</SelectItem>
 							<SelectItem value="python">Python</SelectItem>
 							<SelectItem value="c">C</SelectItem>
+							<SelectItem value="cpp">C++</SelectItem>
 							<SelectItem value="java">Java</SelectItem>
 							<SelectItem value="html_css">HTML/CSS</SelectItem>
 						</SelectContent>
@@ -72,9 +73,9 @@ const ReviewPage = () => {
 
 				{isError && (
 					<p className="text-red-400">
-					Looks like CoDEsk is out of credits for now. It's a student project
-					running on a tight budget 🙂 Check back later or reach out to me on
-					LinkedIn.
+						{error.response?.data?.error ??
+							"Looks like CoDEsk is out of credits for now. It's a student project running on a tight budget 😊 Check back later or reach out to me on LinkedIn 👇"
+						}
 					</p>
 				)}
 			</div>

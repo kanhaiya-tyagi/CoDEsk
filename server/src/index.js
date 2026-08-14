@@ -13,6 +13,7 @@ app.use(cors({
     origin: "https://codesk-delta.vercel.app",
     credentials: true,
 }))
+// app.use(cors())
 app.use(express.json())
 
 app.use('/api/sessions', sessionRoutes)

@@ -22,6 +22,7 @@ enum Language {
     javascript
     python
     c
+    cpp
     java
     html_css
 }

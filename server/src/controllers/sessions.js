@@ -2,11 +2,8 @@ import { createSession, getSessionById, getSessionsByClient } from "../services/
 
 export const handleCreateSession = async (req, res) => {
     try {
-        const {clientId, sessionName, language, codeInput, aiSummary, aiIssues, aiSuggestions} = req.body
+        const {clientId, sessionName, language, codeInput} = req.body
 
-        if (!clientId || !language || !codeInput) {
-            return res.status(400).json({ error: 'clientId, language and codeInput are required' })
-        }
 
         const session = await createSession({
             clientId,
